@@ -9,7 +9,6 @@ var stringifyJSON = function(inputObj) {
   var inner = function(obj) {
     var holder;
     counter += 1;
-    console.log("counter is ", counter);
     //if counter = 0, first time inner is called, stringify primitives, otherwise check type to see whether to
     //stringify
     if( typeof obj === "boolean") return counter === 1?  '' + obj + '':  obj;
@@ -30,9 +29,7 @@ var stringifyJSON = function(inputObj) {
     		//do stuff if it's an object
         //var holder;
         if( Object.keys(obj).length === 0 ) {
-          //console.log("got here ");
           holder = ["{}"].join("");
-          //console.log("holder for empty object is ", holder);
           return holder;
         } 
 
@@ -46,28 +43,8 @@ var stringifyJSON = function(inputObj) {
             }
           });
 
-/*
-          for( var key in obj ) {
-            //console.log("key is ", key);
-            //console.log("obj is ", obj);
-            if( obj.hasOwnProperty(key) ) {
-              //key = key.toString("");
-              //console.log("key is ", key);
-              holder.push( '"' + key + '"' + ':' + inner(obj[key]));
-              
-            }
-          //holder[key] = inner(obj[key]);
-          //holder = "'{" + key.toStrig() + ":" + inner(obj[key]).toString() + "}'"; 
-          }
-          */
-          holder = '{' + holder.join(',') + '}';
-          //console.log("holder inside is ", holder);
+       holder = '{' + holder.join(',') + '}';
           
-         
-          console.log("holder during iter is ", holder);
-
-          //console.log("String(holder) is ", String(holder));
-          //console.log("holder at end is ", holder); 
           return holder;
         }
         
